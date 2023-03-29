@@ -1,0 +1,67 @@
+@charset "utf-8";
+
+body {
+	background-color: #eeeeee;
+}
+
+article {
+	position: relative;
+	width: 98%;
+	min-width: 800px;
+	margin: 20px auto 0px;
+	overflow-x: hidden;
+}
+article > .row > section {
+	padding: 5px 10px;
+}
+article > .row > section > section {
+	position: relative;
+	width: 100%;
+	min-height: 100px;
+	background-color: #FFFFFF;
+}
+article > .row > section .statistics > section {
+	height: 130px;
+	padding: 10px;
+}
+article > .row > section .statistics > section:nth-child(4n+1) {
+	padding-left: 0px;
+}
+article > .row > section .statistics > section:nth-child(4n) {
+	padding-right: 0px;
+}
+article > .row > section .statistics > section > section {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+article > .row > section .statistics > section:nth-child(1) > section {
+	background-color: #2B669A;
+}
+article > .row > section .statistics > section:nth-child(2) > section {
+	background-color: #B92C28;
+}
+article > .row > section .statistics > section:nth-child(3) > section {
+	background-color: #398439;
+}
+article > .row > section .statistics > section:nth-child(4) > section {
+	background-color: #7f47a6;
+}
+article > .row > section .statistics > section:nth-child(5) > section {
+	background-color: #3C3C3C;
+}
+article > .row > section .statistics > section:nth-child(6) > section {
+	background-color: #269ABC;
+}
+article > .row > section .statistics > section:nth-child(7) > section {
+	background-color: #C2C2C2;
+}
+article > .row > section .statistics > section:nth-child(8) > section {
+	background-color: #D58512;
+}
+article > .row .row-one {
+	height: 260px;
+}
+article > .row .row-tow {
+	height: 300px;
+}

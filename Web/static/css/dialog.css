@@ -1,0 +1,79 @@
+@charset "utf-8";
+
+#dialog {
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+#dialog > section {
+	position: relative;
+	width: 400px;
+	margin: 260px auto 0px;
+	padding: 0px;
+	border-radius: 5px;
+	background-color: #FFFFFF;
+}
+
+#dialog > section > i {
+	position: absolute;
+	display: block;
+	padding: 3px 6px;
+	top: 0px;
+	right: 0px;
+	font-size: 12px;
+	font-style: normal;
+	color: #ababab;
+	border-bottom: solid 1px #C3C3C3;
+	border-left: solid 1px #C3C3C3;
+	cursor: pointer;
+}
+
+#dialog > section > p {
+	font-size: 14px;
+	text-align: left;
+}
+
+#dialog > section > p.title {
+	height: 36px;
+	line-height: 36px;
+	letter-spacing: 2px;
+	text-indent: 10px;
+}
+#dialog > section > p.message {
+	height: 50px;
+	line-height: 50px;
+	text-indent: 28px;
+}
+
+#dialog > section > p.btn-groups {
+	padding: 0px 10px 10px 0px;
+	text-align: right;
+}
+
+#dialog > section > p input.btn {
+	width: 70px;
+	height: 36px;
+	border: solid 1px #FFFFFF;
+	border-radius: 3px;
+	box-sizing: border-box;
+	color: #F4F4F4;
+	cursor: pointer;
+}
+#dialog > section > p input.btn-primary {
+	background-color: #6495ED;
+}
+#dialog > section  > p input.btn-primary:hover {
+	background-color: #6ba0fc;
+}
+#dialog > section > p input.btn-default {
+	color: #1e1e1e;
+	background-color: #C3C3C3;
+}
+#dialog > section  > p input.btn-default:hover {
+	color: #1e1e1e;
+	background-color: #e6e6e6;
+}

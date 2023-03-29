@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'django-insecure-x0%%ua*dy)&&73g1q_1he#8@-2zwkqd^hv@e0#1l216g@1u4@1
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -55,7 +53,7 @@ ROOT_URLCONF = 'bug_manage.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': [BASE_DIR / 'Web/templates']
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -71,7 +69,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'bug_manage.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -81,7 +78,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -101,7 +97,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -113,13 +108,23 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
 
 # ######## 短信的配置 ########
+# 腾讯云短信应用的 app_id
+TENCENT_SMS_APP_ID = None
+# 腾讯云短信应用的 app_key
+TENCENT_SMS_APP_KEY = None
+# 腾讯云短信签名内容
+TENCENT_SMS_SIGN = None
+TENCENT_SMS_TEMPLATE = {
+    'register': 1744672,
+    'login': 1744670,
+    're_password': 1744669,
+}
 
 try:
     from .local_settings import *

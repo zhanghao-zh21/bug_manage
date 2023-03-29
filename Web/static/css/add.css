@@ -1,0 +1,65 @@
+@charset "utf-8";
+
+body {
+	font-size: 12px;
+	margin: 0px;
+}
+
+#content {
+	position: relative;
+	width: 100%;
+}
+
+#content nav {
+	position: relative;
+	width: 90%;
+	min-width: 800px;
+	height: 36px;
+	margin: 50px auto 0px;
+	border-radius: 5px;
+	text-align: right;
+	background-color:  rgba(36, 154, 188, 0.6);
+}
+#content nav i {
+	margin: 10px 10px 0px;
+	font-size: 16px;
+	color: #F5F5F5;
+	cursor: pointer;
+}
+
+#content form dl {
+	width: 600px;
+	margin: 30px auto 0px;
+}
+
+#content form dl dt {
+	font-size: 18px;
+	font-weight: bold;
+	/* text-align: center; */
+	text-indent: 36px;
+	letter-spacing: 3px;
+	padding-bottom: 5px;
+	border-bottom: solid 1px #CCCCEE;
+}
+
+#content form dl dd {
+	margin: 20px 50px;
+}
+
+#content form dl dd label {
+	display: inline-block;
+	width: 80px;
+}
+#content form dl dd .input-simple {
+	width: 260px;
+}
+#content form dl dd textarea {
+	width: 400px;
+	height: 120px;
+}
+#content form dl dd.button-group {
+	text-align: center;
+}
+#content form dl dd.button-group input {
+	margin: 0px 10px;
+}

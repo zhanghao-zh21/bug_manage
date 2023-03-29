@@ -1,0 +1,51 @@
+@charset "utf-8";
+
+header {
+	position: relative;
+	width: 100%;
+	margin-top: 50px;
+}
+header p {
+	width: 400px;
+	margin: 0px auto;
+	text-align: center;
+}
+
+header p.form-inline .form-control {
+	display: inline-block !important;
+	width: 300px;
+	border-right: none;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+header p.form-inline .btn {
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+
+article {
+	position: relative;
+	margin: 30px auto 0px;
+	width: 96%;
+	min-width: 800px;
+}
+article section p.button-group {
+	float: left;
+	width: 400px;
+}
+article section p.button-group button {
+	margin-right: 6px;
+}
+article section nav {
+	float: right;
+	width: 360px;
+	text-align: right;
+}
+article section nav .pagination {
+	margin: 0px;
+}
+
+.table tr th, .table tr td {
+	text-align: center;
+}

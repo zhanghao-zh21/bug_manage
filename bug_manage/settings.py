@@ -125,7 +125,11 @@ TENCENT_SMS_TEMPLATE = {
     'login': 1744670,
     're_password': 1744669,
 }
-
+# #######设置redis密码#########
+REDIS_PASSWORD = None
+# #######连接Redis############
+CACHES = {
+}
 try:
     from .local_settings import *
 except ImportError:

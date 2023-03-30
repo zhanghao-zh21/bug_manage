@@ -3,47 +3,101 @@
 {% block title %}用户注册{% endblock %}
 
 {% block css %}
-    <style>
-        .account {
-            width: 400px;
-            margin: 0 auto;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static  'css/account.css' %}">
 
 {% endblock %}
 
 {% block content %}
 
-<div class="container">
-<div class="account">
-    <h1>注册</h1>
-    <form>
-        {% for foo in form %}
-            {% if foo.name == 'code' %}
-                <div class="form-group">
-                    <label for="{{ foo.id_for_label }}">{{ foo.label }}</label>
-                    <div class="clearfix">
-                        <div class="col-md-6" style="padding-left: 0">{{ foo }}</div>
-                        <div class="col-md-6">
-                            <input type="button" class="btn btn-info" value="点击获取验证码">
-                        </div>
-                    </div>
+    <div class="container">
+        <div class="account">
+            <div class="title">用户注册</div>
+            <form id="form" method="post" novalidate>
+                {% csrf_token %}
+                {% for foo in form %}
+                    {% if foo.name == 'code' %}
+                        <div class="form-group">
+                            <label for="{{ foo.id_for_label }}">{{ foo.label }}</label>
+                            <div class="clearfix">
+                                <div class="col-md-7" style="padding-left: 0">{{ foo }}</div>
+                                <div class="col-md-5">
+                                    <input id="btnSms" type="button" class="btn btn-default" value="获取短信验证码">
+                                </div>
+                            </div>
 
-                </div>
-            {% else %}
-                <div class="form-group">
-                    <label for="{{ foo.id_for_label }}">{{ foo.label }}</label>
-                    {{ foo }}
-                </div>
-            {% endif %}
-        {% endfor %}
-        <button type="submit" class="btn btn-primary">注 册</button>
-    </form>
-</div>
-</div>
+                        </div>
+                    {% else %}
+                        <div class="form-group">
+                            <label for="{{ foo.id_for_label }}">{{ foo.label }}</label>
+                            {{ foo }}
+                            <span class="error-msg">{{ foo.errors.0 }}</span>
+                        </div>
+
+                    {% endif %}
+                {% endfor %}
+                <button type="submit" style="margin-left: 100px;width: 120px" class="btn btn-info">注 册</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}
 
 {% block js %}
+    <script>
+        // 页面框架加载完成后自动执行函数
+        $(function () {
+            bindClickBtnSms();
+            window.history.replaceState(null, null, window.location.href);
+        });
+
+        /*
+          点击获取短信验证码的按钮的绑定事件
+        */
+        function bindClickBtnSms() {
+            $('#btnSms').click(function () {
+                $('.error-msg').empty();
+                // 获取用户输入的手机号
+                // 找到输入框id,根据id获取值
+                var mobilePhone = $('#id_mobile_phone').val();
+                // 发送ajax请求,把手机号发送给后端
+                $.ajax({
+                    url: '{% url 'send_sms' %}',  //需要提交的地址 等价于/send/sms/
+                    type: 'GET', //用什么方式传参
+                    data: {mobile_phone: mobilePhone, tpl: 'register'},  //传递的参数
+                    dataType: 'JSON', //将服务端返回的数据反序列化为字典
+                    success: function (res) {
+                        // ajax请求发送成功后,自动执行的函数,res是后端返回的值
+                        if (res.status) {
+                            sendSmsRemind();
+                        } else {
+                            //错误信息
+                            console.log(res)   // {status: false, error: {mobile_phone:['错误信息',]}}
+                            $.each(res.error, function (key, value) {  //key:mobile_phone value:错误信息
+                                $('#id_' + key).next().text(value[0]);  //向error-msg所在写入错误信息
+                            })            //表示循环
+                        }
+                    }
+                })
+            })
+
+            /*
+                验证码过期倒计时
+             */
+            function sendSmsRemind() {
+                var $smsBtn = $('#btnSms');
+                $smsBtn.prop("disabled", true);  //添加disabled属性, 不可操作
+                var time = 60;
+                var remind = setInterval(function () {   //创建一个定时器
+                    $smsBtn.val(time + '秒后可重新发送');
+                    time = time - 1;
+                    if (time === 0) {
+                        clearInterval(remind);  //销毁定时器
+                        $smsBtn.val('获取短信验证码').prop("disabled", false); //添加disabled属性, 可操作
+
+                    }
+                }, 1000)  //1000毫秒, 1秒
+            }
+        }
+    </script>
 {% endblock %}
 
 

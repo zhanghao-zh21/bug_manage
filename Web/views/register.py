@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 import random
 
+from django.http import JsonResponse
 # Create your views here.
 from django.shortcuts import HttpResponse, render
 
@@ -15,18 +16,14 @@ def send_sms(request):
         ?tpl=register -> 1744672
         ?tpl=re_password -> 1744669
     '''
-    tpl = request.GET.get('tpl')
-    template_id = settings.TENCENT_SMS_TEMPLATE.get(tpl)
-    if not template_id:
-        return HttpResponse("模板不存在")
-    code = random.randrange(1000, 9999)
-    res = send_sms_single('18225078646', template_id, [code, ])
-    if res['result'] == 0:
-        return HttpResponse('成功')
-    else:
-        HttpResponse(res['errmsg'])
+    form = SendSmsForm(request, data=request.GET)
+    # 只是校验手机号:不能为空,格式是否正确
+    if form.is_valid():
+        return JsonResponse({'status': True})
+    return JsonResponse({'status': False, 'error': form.errors})
 
 
 def register(request):
+    ''' 注册 '''
     form = RegisterModelForm()
     return render(request, 'register.html', {'form': form})

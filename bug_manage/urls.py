@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from Web.views import register
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('register/', register.register,name='register')
+    path('register/', register.register, name='register'),
+    path('send/sms/', register.send_sms, name='send_sms')
 
 ]
